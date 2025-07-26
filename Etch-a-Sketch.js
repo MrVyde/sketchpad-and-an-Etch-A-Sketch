@@ -44,5 +44,26 @@ container.addEventListener('mouseover', e => {
 });
 
 
+container.addEventListener('mouseover', e => {
+  if (!e.target.classList.contains('cell')) return;
+  const cell = e.target;
+
+  let light = parseInt(cell.dataset.lightness) || 100;
+
+  if (!cell.dataset.base) {
+    // First interaction: pick random RGB
+    const r = Math.floor(Math.random()*256);
+    const g = Math.floor(Math.random()*256);
+    const b = Math.floor(Math.random()*256);
+    cell.dataset.base = `${r},${g},${b}`;
+    cell.dataset.lightness = 100;
+    cell.style.backgroundColor = `rgb(${r},${g},${b})`;
+  } else if (light > 0) {
+    light -= 10;
+    cell.dataset.lightness = light;
+    const [r,g,b] = cell.dataset.base.split(',');
+    cell.style.backgroundColor = `rgb(${Math.floor(r*light/100)},${Math.floor(g*light/100)},${Math.floor(b*light/100)})`;
+  }
+});
 
 
