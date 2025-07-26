@@ -5,6 +5,11 @@ for (let i = 0; i < 256; i++) {
     container.appendChild(cell)
 }
 
+container.addEventListener('mouseover', function(e) {
+  if (e.target.classList.contains('cell')) {
+    e.target.classList.add('colored');
+  }
+});
 
 
 
