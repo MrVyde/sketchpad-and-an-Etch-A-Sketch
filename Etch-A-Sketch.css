@@ -13,3 +13,6 @@
     box-sizing: border-box;
 }
 
+.cell.colored {
+  background-color: blue;
+}
